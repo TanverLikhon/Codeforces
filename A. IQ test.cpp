@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/problemset/problem/25/A
+Verdict     :AC
+Time         :60 ms	0 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -30,37 +30,35 @@ using namespace std;
 
 int main()
 {
-    int n,x;
+    int n;
     sf(n);
-    v<int>vec;
+    int x;
+    int even=0,odd=0;
+    int arr[n+1];
     for(int i=0; i<n; i++)
-        sf(x),vec.pb(x);
-    int ck=1;
-    int diff=0;
-    int maxx=1;
-    sort(vec.begin(),vec.end());
-    int tmp=vec[0];
-    for(int i=1; i<n; i++)
     {
-        diff+=(vec[i]-tmp);
-       // cout<<vec[i]<<" ";
-        // cout<<"temp "<<tmp<<endl;
-       // cout<<"dif "<<diff<<endl;
-        if(diff>5)
-        {
-          //  cout<<"entered "<<vec[i]<<endl;
-            if(ck>maxx)
-                maxx=ck;
-            diff=0;
-            ck=1;
-        }
-        else if(diff<=5&&i<n)
-        ck++;
-        tmp=vec[i];
+        sf(arr[i]);
+        if(arr[i]%2==0)
+            even++;
+        else
+            odd++;
     }
-    if(ck>maxx)
-        maxx=ck;
-    pf("%d\n",maxx);
-    return 0;
+    if(odd==1)
+    {
+        for(int i=0; i<n; i++)
+            if(arr[i]%2==1)
+            {
+                pf("%d ",i+1);
+                return 0;
+            }
+    }
+    else
+        for(int i=0; i<n; i++)
+            if(arr[i]%2==0)
+            {
+                pf("%d ",i+1);
+                return 0;
+            }
+
 }
 

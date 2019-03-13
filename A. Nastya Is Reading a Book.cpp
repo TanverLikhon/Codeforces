@@ -1,7 +1,7 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
+Problem  :https://codeforces.com/contest/1136/problem/A
+Verdict     :AC
 Time         :
 Memory  :
 */
@@ -30,37 +30,26 @@ using namespace std;
 
 int main()
 {
-    int n,x;
-    sf(n);
-    v<int>vec;
-    for(int i=0; i<n; i++)
-        sf(x),vec.pb(x);
-    int ck=1;
-    int diff=0;
-    int maxx=1;
-    sort(vec.begin(),vec.end());
-    int tmp=vec[0];
-    for(int i=1; i<n; i++)
-    {
-        diff+=(vec[i]-tmp);
-       // cout<<vec[i]<<" ";
-        // cout<<"temp "<<tmp<<endl;
-       // cout<<"dif "<<diff<<endl;
-        if(diff>5)
-        {
-          //  cout<<"entered "<<vec[i]<<endl;
-            if(ck>maxx)
-                maxx=ck;
-            diff=0;
-            ck=1;
-        }
-        else if(diff<=5&&i<n)
-        ck++;
-        tmp=vec[i];
-    }
-    if(ck>maxx)
-        maxx=ck;
-    pf("%d\n",maxx);
-    return 0;
+ int n;
+ sf(n);
+ mp<int,pair<int,int>>ck;
+ for(int i=1;i<=n;i++)
+ {
+     int x,y;
+     sff(x,y);
+    ck[i]={x,y};
+ }
+ int z;sf(z);
+ for(int i=1;i<=n;i++)
+ {
+     if(z>=ck[i].first&&z<=ck[i].second)
+     {
+        // cout<<i<<endl;
+         pf("%d\n",n-i+1);
+         break;
+     }
+ }
+  //  cout<<ck[i].first<<"  "<<ck[i].second<<endl;
+return 0;
 }
 

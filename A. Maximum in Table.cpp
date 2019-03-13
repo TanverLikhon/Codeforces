@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/problemset/problem/509/A
+Verdict     :AC
+Time         :15 ms	0 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -30,37 +30,20 @@ using namespace std;
 
 int main()
 {
-    int n,x;
+    int n;
     sf(n);
-    v<int>vec;
-    for(int i=0; i<n; i++)
-        sf(x),vec.pb(x);
-    int ck=1;
-    int diff=0;
+    int arr[n][n];
     int maxx=1;
-    sort(vec.begin(),vec.end());
-    int tmp=vec[0];
+    for(int i=0; i<n; i++)
+        arr[0][i]=1,arr[i][0]=1;
     for(int i=1; i<n; i++)
-    {
-        diff+=(vec[i]-tmp);
-       // cout<<vec[i]<<" ";
-        // cout<<"temp "<<tmp<<endl;
-       // cout<<"dif "<<diff<<endl;
-        if(diff>5)
+        for(int j=1; j<n; j++)
         {
-          //  cout<<"entered "<<vec[i]<<endl;
-            if(ck>maxx)
-                maxx=ck;
-            diff=0;
-            ck=1;
+               arr[i][j]=arr[i-1][j]+arr[i][j-1];
+               if(arr[i][j]>maxx)maxx=arr[i][j];
         }
-        else if(diff<=5&&i<n)
-        ck++;
-        tmp=vec[i];
-    }
-    if(ck>maxx)
-        maxx=ck;
-    pf("%d\n",maxx);
-    return 0;
+pf("%d\n",maxx);
+return 0;
+
 }
 

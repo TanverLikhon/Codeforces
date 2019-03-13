@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/contest/1133/problem/C
+Verdict     :AC
+Time         :78 ms	800 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -32,34 +32,26 @@ int main()
 {
     int n,x;
     sf(n);
-    v<int>vec;
+    int vec[n];
     for(int i=0; i<n; i++)
-        sf(x),vec.pb(x);
+        sf(vec[i]);
     int ck=1;
     int diff=0;
     int maxx=1;
-    sort(vec.begin(),vec.end());
-    int tmp=vec[0];
-    for(int i=1; i<n; i++)
+    sort(vec,vec+n);
+    int i=0;
+    for(int j=0; j<n;j++)
     {
-        diff+=(vec[i]-tmp);
-       // cout<<vec[i]<<" ";
-        // cout<<"temp "<<tmp<<endl;
-       // cout<<"dif "<<diff<<endl;
-        if(diff>5)
+        if(vec[j]-vec[i]<=5)
         {
-          //  cout<<"entered "<<vec[i]<<endl;
-            if(ck>maxx)
-                maxx=ck;
-            diff=0;
-            ck=1;
+            maxx=max(maxx,j-i+1);
         }
-        else if(diff<=5&&i<n)
-        ck++;
-        tmp=vec[i];
+        else
+
+            i++;
+
+
     }
-    if(ck>maxx)
-        maxx=ck;
     pf("%d\n",maxx);
     return 0;
 }
