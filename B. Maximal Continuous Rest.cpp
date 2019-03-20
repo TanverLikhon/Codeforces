@@ -1,9 +1,9 @@
 /*Never Give up*/
 /*
-Problem  :https://codeforces.com/contest/189/problem/A
-Verdict     :AC
-Time         :31 ms	0 KB
-Memory  :
+Problem  :https://codeforces.com/contest/1141/problem/B
+Verdict     :AC at 7th attempt
+Time         :61ms
+Memory  :0
 */
 #include<bits/stdc++.h>
 using namespace std;
@@ -27,30 +27,43 @@ using namespace std;
 #define en        pf("Entered\n")
 //int dx[] = {-1, 0, 1, 0};
 //int dy[] = {0, 1, 0, -1};
-int maxCoin(int values[],int n,int total)
-{
-    int change[total+1];
-    change[0]=0;
-    for(int j=1;j<=total;j++)
-    {
-        int maxx=INT_MIN;
-        for(int i=0;i<n;i++)
-        {
-            if(j>=values[i]&&(change[j-values[i]]+1)>maxx)
-                maxx=change[j-values[i]]+1;
-        }
-        change[j]=maxx;
-    }
-    return change [total];
-}
+
 int main()
 {
-    int n=3;
-  int val[n];
-  int total;
-  sffff(total,val[0],val[1],val[2]);
-  int res=maxCoin(val,n,total);
-  pf("%d\n",res);
-  return 0;
-}
+    int n;
+    sf(n);
+    int tmp,tmp1;
+    bool flag=false;
+    int ck1=0;
+    sf(tmp1);
+    tmp=tmp1;
+    int ck=0;
+    if(tmp1==1)ck++,ck1++;
+    int maxx=0;
+    int x;
+    int y=0;
+    for(int i=1; i<n; i++)
+    {
+        sf(x);
+        if(x==1)
+           {
 
+                ck++,ck1++;
+           }
+          if(x!=1||i==n-1)
+          {
+                      maxx=max(maxx,ck);
+              if(flag==false)
+                y=ck1,flag=true;
+             if(i!=n-1) ck=0;
+           //   cout<<maxx<<endl;
+          }
+
+    }
+ //cout<<y<<"  "<<ck<<endl;
+    if(tmp1==x&&tmp==1)
+        maxx=max(maxx,ck+y);
+
+pf("%d\n",maxx);
+    return 0;
+}

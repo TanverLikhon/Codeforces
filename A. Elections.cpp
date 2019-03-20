@@ -1,9 +1,9 @@
 /*Never Give up*/
 /*
-Problem  :https://codeforces.com/contest/189/problem/A
+Problem  :https://codeforces.com/contest/570/problem/A
 Verdict     :AC
-Time         :31 ms	0 KB
-Memory  :
+Time         :31ms
+Memory  :0
 */
 #include<bits/stdc++.h>
 using namespace std;
@@ -27,30 +27,37 @@ using namespace std;
 #define en        pf("Entered\n")
 //int dx[] = {-1, 0, 1, 0};
 //int dy[] = {0, 1, 0, -1};
-int maxCoin(int values[],int n,int total)
-{
-    int change[total+1];
-    change[0]=0;
-    for(int j=1;j<=total;j++)
-    {
-        int maxx=INT_MIN;
-        for(int i=0;i<n;i++)
-        {
-            if(j>=values[i]&&(change[j-values[i]]+1)>maxx)
-                maxx=change[j-values[i]]+1;
-        }
-        change[j]=maxx;
-    }
-    return change [total];
-}
+
 int main()
 {
-    int n=3;
-  int val[n];
-  int total;
-  sffff(total,val[0],val[1],val[2]);
-  int res=maxCoin(val,n,total);
-  pf("%d\n",res);
-  return 0;
+    int n,m,x;
+    sff(n,m);
+    int cand[n+1];
+    for(int i=1; i<=n; i++)
+        cand[i]=0;
+    int arr[m][n];
+    int maxx;
+    for(int i=0; i<m; i++)
+    {
+        int c;
+        maxx=-1;
+        for(int j=0; j<n; j++)
+        {
+            sf(x);
+            if(x>maxx)
+                maxx=x,c=j+1;
+        }
+        cand[c]++;
+    }
+    maxx=-1;
+    int win;
+    for(int i=1; i<=n; i++)
+        if(cand[i]>maxx)
+            maxx=cand[i],win=i;
+
+
+
+    pf("%d\n",win);
+    return 0;
 }
 
