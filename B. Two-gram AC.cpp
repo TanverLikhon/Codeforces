@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/contest/977/problem/B
+Verdict     :AC
+Time         :15 ms	100 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -31,7 +31,7 @@ using namespace std;
 #define pi          pair<int,int>
 #define pl          pair<ll,ll>
 #define mp         map
-#define nl         pf("\n")
+#define nl         printf("\n")
 #define en        pf("Entered\n")
 #define en1      pf("Entered 2\n")
 
@@ -45,29 +45,23 @@ using namespace std;
 //int dy[]={2,-2,1,-1,2,-2,1,-1};/*knight move*/
 
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
-
+mp<string ,int>freq;
 int main()
 {
-    int n,m;
-    sff(n,m);
-    bool flag=true;
-    vl arr;
-    for(int i=0; i<m; i++){
-    int x;
-    sf(x);if(x==1||x==n)flag=false;
-    arr.pb(x);
-    }
-    if(!flag){pf("NO\n");return 0;}
-    sort(all(arr));
-    for(int i=0; i<m-2; i++)
-    {
-      //cout<<arr[i]<<endl;
-      if(arr[i]+1==arr[i+1]&&arr[i+1]+1==arr[i+2])
-        {pf("NO\n");return 0;}
+  int n;sf(n);string str;
+  cin>>str;
+  for(int i=0;i<n-1;i++)
+  freq[str.substr(i,2)]++;
+  mp<string ,int>::iterator it=freq.begin();
+  int maxx=-1;
+  while(it!=freq.end())
+  {
+    if(it->ss>maxx)
+    maxx=it->ss,str=it->ff;it++;
+  }
+  cout<<str<<endl;
 
-    }
-    pf("YES\n");
-    return 0;
+return 0;
 }
 /*
 Ref:

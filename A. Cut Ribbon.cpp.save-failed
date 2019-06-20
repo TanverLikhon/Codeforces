@@ -1,0 +1,76 @@
+/*Never Give up*/
+/*
+Problem  :
+Verdict     :
+Time         :
+Memory  :
+*/
+#include<bits/stdc++.h>
+using namespace std;
+#define sf(a)          scanf("%d",&a)
+#define sff(a,b)         scanf("%d%d",&a,&b)
+#define sfff(a,b,c)         scanf("%d%d%d",&a,&b,&c)
+#define sffff(a,b,c,d)         scanf("%d%d%d%d",&a,&b,&c,&d)
+#define sl(a)          scanf("%ld",&a)
+#define sll(a,b)         scanf("%ld%ld",&a,&b)
+#define slll(a,b,c)         scanf("%ld%ld%ld",&a,&b,&c)
+#define sllll(a,b,c,d)         scanf("%ld%ld%ld%ld",&a,&b,&c,&d)
+#define pf         printf
+#define ll           long long
+#define ull        unsigned long long
+#define pb        push_back
+#define v           vector
+#define l            list
+#define pi          pair
+#define mp         map
+#define nl         printf("\n")
+#define en        pf("Entered\n")
+//int dx[] = {-1, 0, 1, 0};
+//int dy[] = {0, 1, 0, -1};
+int n,a,b,c;
+mp<int,bool>visited;
+mp<int,int>level;
+
+int bfs()
+{
+    int maxx=0;
+    queue< int >q;
+    visited[n]=true;
+    level[n]=0;
+    q.push(n);
+    while(!q.empty())
+    {
+        int u=q.front();
+        cout<<u<<endl;
+        if(visited[u-a]!=true&&u-a>=0)
+        {
+            visited[u-a]=true;
+            level[u-a]=max(level[u-a],level[u]+1);
+         //   maxx=max(maxx,level[u-a]);
+            q.push(u-a);
+        }
+        if(visited[u-b]!=true&&u-b>=0)
+        {
+            visited[u-b]=true;
+                     level[u-b]=max(level[u-b],level[u]+1);
+         //   maxx=max(maxx,level[u-b]);
+            q.push(u-b);
+        }
+        if(visited[u-c]!=true&&u-c>=0)
+        {
+            visited[u-c]=true;
+                        level[u-c]=max(level[u-c],level[u]+1);
+         //   maxx=max(maxx,level[c-a]);
+            q.push(u-c);
+        }
+        q.pop();
+    }
+    return level[0];
+}
+int main()
+{
+    sffff(n,a,b,c);
+ pf("%d\n",bfs());
+ return 0;
+}
+

@@ -1,9 +1,9 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
-Memory  :
+Problem  :https://codeforces.com/problemset/problem/279/B
+Verdict     :AC
+Time         :90ms
+Memory  :400KB
 */
 #include<bits/stdc++.h>
 using namespace std;
@@ -31,7 +31,7 @@ using namespace std;
 #define pi          pair<int,int>
 #define pl          pair<ll,ll>
 #define mp         map
-#define nl         pf("\n")
+#define nl         printf("\n")
 #define en        pf("Entered\n")
 #define en1      pf("Entered 2\n")
 
@@ -48,26 +48,30 @@ using namespace std;
 
 int main()
 {
-    int n,m;
-    sff(n,m);
-    bool flag=true;
-    vl arr;
-    for(int i=0; i<m; i++){
-    int x;
-    sf(x);if(x==1||x==n)flag=false;
-    arr.pb(x);
-    }
-    if(!flag){pf("NO\n");return 0;}
-    sort(all(arr));
-    for(int i=0; i<m-2; i++)
-    {
-      //cout<<arr[i]<<endl;
-      if(arr[i]+1==arr[i+1]&&arr[i+1]+1==arr[i+2])
-        {pf("NO\n");return 0;}
+int t,n,maxx=-1;
+sff(n,t);
+int arr[n];int ck1=0,ck2=0;
+ll sum=0;
+for(int i=0,j=0;i<n;i++)
+{
+ sf(arr[i]);
+ if(sum+arr[i]>t)
+ sum-=arr[j],j++;
+ else if(sum+arr[i]==t)
+ {
+   ck1++;
+   maxx=max(maxx,ck1);
+   sum-=arr[j++];
+   ck1--;
+ }
+ else ck1++;
 
-    }
-    pf("YES\n");
-    return 0;
+ maxx=max(maxx,ck1);
+ sum+=arr[i];
+ }
+ cout<<maxx<<endl;
+
+return 0;
 }
 /*
 Ref:

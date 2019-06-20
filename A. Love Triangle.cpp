@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/contest/939/problem/A
+Verdict     :AC
+Time         :30 ms	0 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -31,11 +31,12 @@ using namespace std;
 #define pi          pair<int,int>
 #define pl          pair<ll,ll>
 #define mp         map
-#define nl         pf("\n")
+#define nl         printf("\n")
 #define en        pf("Entered\n")
 #define en1      pf("Entered 2\n")
+// priority_queue<int, vector<int>, greater<int> > Q;//for smaller values
 
-#define MAX    100000
+#define MAX    5005
 
 //int dx[] = {-1, 0, 1, 0};
 //int dy[] = {0, 1, 0, -1};
@@ -45,29 +46,21 @@ using namespace std;
 //int dy[]={2,-2,1,-1,2,-2,1,-1};/*knight move*/
 
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
-
 int main()
 {
-    int n,m;
-    sff(n,m);
-    bool flag=true;
-    vl arr;
-    for(int i=0; i<m; i++){
-    int x;
-    sf(x);if(x==1||x==n)flag=false;
-    arr.pb(x);
-    }
-    if(!flag){pf("NO\n");return 0;}
-    sort(all(arr));
-    for(int i=0; i<m-2; i++)
-    {
-      //cout<<arr[i]<<endl;
-      if(arr[i]+1==arr[i+1]&&arr[i+1]+1==arr[i+2])
-        {pf("NO\n");return 0;}
+ int n;sf(n);
+ int arr[n+1];
+ for(int i=1;i<=n;i++)sf(arr[i]);
+ for(int i=1;i<=n;i++)
+ {
+   int x=arr[i];
+   int y=arr[x];
+   if(arr[y]==i){pf("YES\n");return 0; }
 
-    }
-    pf("YES\n");
-    return 0;
+ }
+pf("NO\n");
+return 0;
+
 }
 /*
 Ref:

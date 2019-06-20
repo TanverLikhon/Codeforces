@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/problemset/problem/362/B
+Verdict  :
+Time    :
 Memory  :
 */
 #include<bits/stdc++.h>

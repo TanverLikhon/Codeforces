@@ -1,10 +1,11 @@
 /*Never Give up*/
 /*
-Problem  :https://codeforces.com/contest/454/problem/B
+Problem  :https://codeforces.com/problemset/problem/451/B
 Verdict     :AC
 Time         :46ms
-Memory  :400kB
+Memory  :400KB
 */
+//learned new trick :)
 #include<bits/stdc++.h>
 using namespace std;
 #define sf(a)          scanf("%d",&a)
@@ -16,7 +17,6 @@ using namespace std;
 #define slll(a,b,c)         scanf("%lld%lld%lld",&a,&b,&c)
 #define sllll(a,b,c,d)         scanf("%lld%lld%lld%lld",&a,&b,&c,&d)
 #define sc(a) scanf("%c",&a)
-#define faster  ios :: sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define pf         printf
 #define ll           long long
 #define ull        unsigned long long
@@ -37,40 +37,47 @@ int main()
     int n;
     sf(n);
     int arr[n];
-    sf(arr[0]);
-    int start=arr[0];
-    int ck=0;
-    int dec=n+2;
-    bool flag=true;
+    for(int i=0; i<n; i++)
+        sf(arr[i]);
+    int start=0,end=n-1;
     for(int i=1; i<n; i++)
     {
-        sf(arr[i]);
         if(arr[i]<arr[i-1])
-            dec=min(dec,i-1),flag=false;
-    }
- //   cout<<dec<<endl;
-    if(flag==false)
-    {
-      //cout<<dec<<"   "<<start<<endl;
-        for(int i=n-1; i>dec; i--)
         {
- //cout<<arr[i]<<"  ";
-            if((arr[i]<arr[i-1]&&i-1>dec)||(arr[i]>start))
-            {
-             //   cout<<(arr[i]<arr[i-1]&&i-1>=dec)<<endl;
-              //  cout<<(arr[i]>start)<<endl;
-           //cout<<"break"<<endl;
-              //  cout<<arr[i]<<endl;
-                pf("-1\n");
-                return 0;
-            }
-            //  if(arr[i]>start)
+            start=i-1;
+            break;
+        }
+    }//en;
+//int i=n-1;
+    for(int i=n-1; i>=1; i--)
+    {
+        if(arr[i]>arr[i-1]&&i-1>=start)
+        {
+            //cout<<"found"<<endl;
+         //   cout<<arr[i]<<endl;
+      //      cout<<i-1<<endl;
+            end=i-1;
         }
     }
+  // cout<<start<<"  "<<end<<endl;
+    //cout<<end<<endl;
+    sort(arr+start,arr+end+1);
+  //  cout<<"print"<<endl;
+//for(int i=0;i<n;i++)
+ //  cout<<arr[i]<<" ";
+    for(int i=1; i<n; i++)
+        if(arr[i]<arr[i-1])
+        {
+            pf("no\n");
+            return 0;
+        }//en;
 
-    if(flag==true)pf("0\n");
-    else    pf("%d\n",n-dec-1);
+    /*while(arr[i]>arr[i-1]&&i-1>=0)
+    {en;
+        end=i-1;i--;
+    }*/
+    pf("yes\n%d %d\n",start+1,end+1);
+    //cout<<start<<"   "<<end<<endl;
     return 0;
-
 }
 

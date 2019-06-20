@@ -1,6 +1,6 @@
 /*Never Give up*/
 /*
-Problem  :
+Problem  :https://codeforces.com/contest/427/problem/B
 Verdict     :
 Time         :
 Memory  :
@@ -22,6 +22,7 @@ using namespace std;
 #define all(a)          a.begin(), a.end()
 #define faster  ios :: sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define pf         printf
+#define pf1        pf("%d\n");
 #define ll           long long
 #define ull        unsigned long long
 #define pb        push_back
@@ -31,9 +32,12 @@ using namespace std;
 #define pi          pair<int,int>
 #define pl          pair<ll,ll>
 #define mp         map
-#define nl         pf("\n")
+#define nl         printf("\n")
 #define en        pf("Entered\n")
 #define en1      pf("Entered 2\n")
+#define gcd(a,b) __gcd(a,b)
+
+// priority_queue<int, vector<int>, greater<int> > Q;//for smaller values
 
 #define MAX    100000
 
@@ -48,27 +52,22 @@ using namespace std;
 
 int main()
 {
-    int n,m;
-    sff(n,m);
-    bool flag=true;
-    vl arr;
-    for(int i=0; i<m; i++){
+    int n,t,c;
+    sfff(n,t,c);
+    int ck=0,ck1=0;
     int x;
-    sf(x);if(x==1||x==n)flag=false;
-    arr.pb(x);
-    }
-    if(!flag){pf("NO\n");return 0;}
-    sort(all(arr));
-    for(int i=0; i<m-2; i++)
+    for(int i=0; i<n; i++)
     {
-      //cout<<arr[i]<<endl;
-      if(arr[i]+1==arr[i+1]&&arr[i+1]+1==arr[i+2])
-        {pf("NO\n");return 0;}
-
+        sf(x);
+        if(x<=t)ck1++;
+        else ck1=0;
+        if(ck1>=c)ck++;
     }
-    pf("YES\n");
+
+    pf("%d\n",ck);
+
     return 0;
 }
 /*
-Ref:
+skip
 */

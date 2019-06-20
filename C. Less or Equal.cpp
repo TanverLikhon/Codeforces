@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/contest/977/problem/C
+Verdict     :AC
+Time         :156 ms	6500 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -45,29 +45,36 @@ using namespace std;
 //int dy[]={2,-2,1,-1,2,-2,1,-1};/*knight move*/
 
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
-
+mp<int,int >freq;
 int main()
 {
-    int n,m;
-    sff(n,m);
-    bool flag=true;
-    vl arr;
-    for(int i=0; i<m; i++){
-    int x;
-    sf(x);if(x==1||x==n)flag=false;
-    arr.pb(x);
-    }
-    if(!flag){pf("NO\n");return 0;}
-    sort(all(arr));
-    for(int i=0; i<m-2; i++)
-    {
-      //cout<<arr[i]<<endl;
-      if(arr[i]+1==arr[i+1]&&arr[i+1]+1==arr[i+2])
-        {pf("NO\n");return 0;}
+  int n,k;
+  sff(n,k);
+  ll sum=0;
+  while(n--)
+  {
+    int x;sf(x);
+    freq[x]++;
+  }
 
-    }
-    pf("YES\n");
-    return 0;
+
+  mp<int,int >::iterator it=freq.begin();
+  if(k==0)
+   {
+     int x=it->ff;
+     if(x<2){pf("-1\n");return 0;}
+     else {pf("%d\n",x-1);return 0;}
+
+   }
+  while(it!=freq.end())
+  {
+   sum+=it->ss;
+   int x=it->ff;
+   if(sum==k){pf("%d\n",x);return 0;}
+   if(sum>k){pf("-1\n");return 0;}it++;
+  }
+
+return 0;
 }
 /*
 Ref:
