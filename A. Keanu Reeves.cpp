@@ -1,7 +1,7 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
+Problem  :http://codeforces.com/contest/1189/problem/A
+Verdict     :AC
 Time         :
 Memory  :
 */
@@ -50,31 +50,51 @@ using namespace std;
 
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
 
+int arr0[101],arr1[101];
 int main()
 {
-    char str[100050];
-    scanf("%s",str);
-    int s=strlen(str);
-    int arr[s+2];
-    arr[0]=0;
-    int  ck=0;
-    for(int i=1; i<s; i++)
+    int n;
+    sf(n);
+    string str;
+    cin>>str;
+    int one=0,zero=0;
+    for(int i=0; i<n; i++)
     {
-        if(str[i]==str[i-1])
-            arr[i]=arr[i-1]+1;
-        else
-            arr[i]=arr[i-1];
+        if(str[i]=='0')zero++;
+        else one++;
+        arr0[i]=zero;
+        arr1[i]=one;
+    }
+    if(zero==n||zero!=one)
+    {
+    pf("1\n");
+        cout<<str<<endl;
+        return 0;
+    }
+    for(int i=0;i<n;i++)
+    {
+      int x,z;
+      x=arr0[n-1]-arr0[i],z=arr1[n-1]-arr1[i];
+
+     // cout<<x<<" "<<z<<endl;
+      if(arr0[i]!=arr1[i]&&x!=z)
+      {
+        pf("2\n");
+             // cout<<"i  "<<i<<endl;
+        for(int j=0;j<=i;j++)
+        cout<<str[j];
+       cout<<" ";
+        for(int j=i+1;j<n;j++)
+        cout<<str[j];//,en1;
+        nl;
+        return 0;
+      }
+
     }
 
 
-    int m;
-    sf(m);
-    while(m--)
-    {
-        int x,y;
-        sff(x,y);
-
-        cout<<arr[y]-arr[x]<<endl;
-    }
     return 0;
 }
+/*
+Ref:
+*/

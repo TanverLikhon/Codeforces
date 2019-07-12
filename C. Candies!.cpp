@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/contest/1189/problem/C
+Verdict     :AC
+Time         :78 ms	400 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -52,29 +52,31 @@ using namespace std;
 
 int main()
 {
-    char str[100050];
-    scanf("%s",str);
-    int s=strlen(str);
-    int arr[s+2];
-    arr[0]=0;
-    int  ck=0;
-    for(int i=1; i<s; i++)
-    {
-        if(str[i]==str[i-1])
-            arr[i]=arr[i-1]+1;
-        else
-            arr[i]=arr[i-1];
-    }
-
-
-    int m;
-    sf(m);
-    while(m--)
-    {
-        int x,y;
-        sff(x,y);
-
-        cout<<arr[y]-arr[x]<<endl;
-    }
-    return 0;
+int n;
+sf(n);
+int arr[n];
+sf(arr[0]);
+for(int i=1;i<n;i++)
+{
+    sf(arr[i]);
+    arr[i]+=arr[i-1];
 }
+int q;
+sf(q);
+while(q--)
+{
+    int x,y;
+    sff(x,y);
+    if(x>1)
+    pf("%d\n",(arr[y-1]-arr[x-2])/10);
+    else
+         pf("%d\n",(arr[y-1])/10);
+}
+
+
+return 0;
+}
+/*
+Ref:
+*/
+

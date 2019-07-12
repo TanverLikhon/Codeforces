@@ -1,8 +1,9 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/contest/1186/problem/D
+Verdict     :AC
+Time         :561 ms	1500 KB ->using cin in line 64
+                   109 ms	1400 KB -> using scanf in line 64
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -52,29 +53,65 @@ using namespace std;
 
 int main()
 {
-    char str[100050];
-    scanf("%s",str);
-    int s=strlen(str);
-    int arr[s+2];
-    arr[0]=0;
-    int  ck=0;
-    for(int i=1; i<s; i++)
+    int n;
+    sf(n);
+    int arr[n];
+    vi pos;
+    vi neg;
+    ll sum=0,sump=0,sumn=0;
+    for(int i=0; i<n; i++)
     {
-        if(str[i]==str[i-1])
-            arr[i]=arr[i-1]+1;
+         float x;
+    scanf("%f",&x);
+        arr[i]=x;
+        int res=ceil(x)-floor(x);
+        if(x>0)
+            sump+=arr[i];
         else
-            arr[i]=arr[i-1];
+            sumn+=abs(arr[i]);
+  if(res!=0)
+  {
+      if(x>0)pos.pb(i);
+      else neg.pb(i);
+  }
+
+        sum+=arr[i];
     }
 
-
-    int m;
-    sf(m);
-    while(m--)
+/*    for(int i=0; i<n; i++)
     {
-        int x,y;
-        sff(x,y);
-
-        cout<<arr[y]-arr[x]<<endl;
+        pf("%d\n",arr[i]);
+    }
+*/
+    //cout<<sz(neg)<<"  "<<sz(pos)<<endl;
+    if(sum==0)
+    {
+        for(int i=0; i<n; i++)
+        {
+            pf("%d\n",arr[i]);
+        }
+        return 0;
+    }
+    int diff=sump-sumn;
+  //  cout<<"Diff "<<diff<<endl;
+    if(diff>0)
+    {
+        for(int i=0; i<diff; i++)
+            arr[neg[i]]--;
+    }
+    else
+    {
+        diff=abs(diff);
+        for(int i=0; i<diff; i++)
+            arr[pos[i]]++;
+    }
+    for(int i=0; i<n; i++)
+    {
+        pf("%d\n",arr[i]);
     }
     return 0;
 }
+/*
+Ref:
+*/
+

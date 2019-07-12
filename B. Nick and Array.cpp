@@ -1,8 +1,9 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :http://codeforces.com/contest/1180/problem/B
+
+Verdict     :AC
+Time         :62 ms	800 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -52,29 +53,22 @@ using namespace std;
 
 int main()
 {
-    char str[100050];
-    scanf("%s",str);
-    int s=strlen(str);
-    int arr[s+2];
-    arr[0]=0;
-    int  ck=0;
-    for(int i=1; i<s; i++)
+    int n;
+    sf(n);
+    ll arr[n+1];int maxx=-1,ck;
+    for(int i=0;i<n;i++)
     {
-        if(str[i]==str[i-1])
-            arr[i]=arr[i-1]+1;
-        else
-            arr[i]=arr[i-1];
+        sl(arr[i]);
+        if(arr[i]>=0)arr[i]=-1*arr[i]-1;
+        if(abs(arr[i])>maxx)maxx=abs(arr[i]),ck=i;
+
     }
-
-
-    int m;
-    sf(m);
-    while(m--)
-    {
-        int x,y;
-        sff(x,y);
-
-        cout<<arr[y]-arr[x]<<endl;
-    }
+    if(n%2)arr[ck]=-1*arr[ck]-1;
+    for(int i=0;i<n;i++)
+        pf("%lld ",arr[i]);
     return 0;
 }
+/*
+Ref:
+*/
+

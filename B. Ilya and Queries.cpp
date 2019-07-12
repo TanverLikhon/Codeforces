@@ -1,7 +1,7 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
+Problem  :https://codeforces.com/problemset/problem/313/B
+Verdict     :184 ms	500 KB
 Time         :
 Memory  :
 */
@@ -52,20 +52,20 @@ using namespace std;
 
 int main()
 {
-    char str[100050];
+    char str[100005];
     scanf("%s",str);
     int s=strlen(str);
-    int arr[s+2];
+    int arr[s+1];
     arr[0]=0;
     int  ck=0;
-    for(int i=1; i<s; i++)
+    for(int i=1; i<=s-1; i++)
     {
-        if(str[i]==str[i-1])
+        if(str[i-1]==str[i])
             arr[i]=arr[i-1]+1;
-        else
-            arr[i]=arr[i-1];
+            else
+                arr[i]=arr[i-1];
     }
-
+    arr[s]=arr[s-1];
 
     int m;
     sf(m);
@@ -74,7 +74,11 @@ int main()
         int x,y;
         sff(x,y);
 
-        cout<<arr[y]-arr[x]<<endl;
+            if(x==1)pf("%d\n",arr[y-1]);
+              //  cout<<arr[y-1]<<endl;
+            else pf("%d\n",arr[y-1]-arr[x-1]);
+           //     cout<<arr[y-1]-arr[x-1]<<endl;
+//
     }
     return 0;
 }

@@ -1,7 +1,7 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
+Problem  :https://codeforces.com/problemset/problem/268/B
+Verdict     :62 ms	0 KB
 Time         :
 Memory  :
 */
@@ -16,7 +16,13 @@ using namespace std;
 #define slll(a,b,c)         scanf("%lld%lld%lld",&a,&b,&c)
 #define sllll(a,b,c,d)         scanf("%lld%lld%lld%lld",&a,&b,&c,&d)
 #define sc(a) scanf("%c",&a)
+#define sz(a)              a.size()
+#define ff first
+#define ss second
+#define all(a)          a.begin(), a.end()
+#define faster  ios :: sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define pf         printf
+#define pf1        pf("%d\n");
 #define ll           long long
 #define ull        unsigned long long
 #define pb        push_back
@@ -28,55 +34,37 @@ using namespace std;
 #define mp         map
 #define nl         printf("\n")
 #define en        pf("Entered\n")
-#define MAX 1000000
+#define en1      pf("Entered 2\n")
+#define gcd(a,b) __gcd(a,b)
+
+// priority_queue<int, vector<int>, greater<int> > Q;//for smaller values
+
+#define MAX    100000
+
 //int dx[] = {-1, 0, 1, 0};
 //int dy[] = {0, 1, 0, -1};
-#define faster  ios :: sync_with_stdio(0); cin.tie(0); cout.tie(0);
-bool prime[MAX];
-vector<ll>primes;
-void    sieve()
-{
-    memset(prime,true,sizeof(prime));
-    prime[0]=false;
-    prime[1]=false;
-    for (ll p=2; p*p<=MAX; p++)
-    {
-        if (prime[p] == true)
-        {
-            for (ll i=p*p; i<=MAX; i += p)
-                prime[i] = false;
-        }
-    }
-for(ll i=2; i<=MAX; i++)
-   if(prime[i])
-      primes.pb(i);
-    //cout<<"$ "<<prime[4]<<endl;
-}
+//int dx[]= {1,1,0,-1,-1,-1,0,1};/*8 side move*/
+//int dy[]= {0,1,1,1,0,-1,-1,-1};/*8 side move*/
+//int dx[]={1,1,2,2,-1,-1,-2,-2};/*knight move*/
+//int dy[]={2,-2,1,-1,2,-2,1,-1};/*knight move*/
+
+//'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
+
 int main()
 {
-  //  faster
-    sieve();
     int n;
-  sf(n);
-    while(n--)
+    sf(n);
+    int total=n,locked=0;
+    int sum=0;
+    for(int i=n;i>=1;i--)
     {
-        ll x;//sl(x);
-        cin>>x;
-        if(x>4&&x%2==0)
-            pf("NO\n");
-        else
+        sum+=i;
+        if(i!=n)
         {
-//en;
-            ll xx=x;bool flag=false;
-            ll sq=sqrt(x)+2;
-            int ck=0;
-            ll sum=1;
-            for(int i=0; primes[i]<=sq&&i<primes.size(); i++)
-            {
-                if(primes[i]*primes[i]==xx){pf("YES\n"),flag=true;break;}
-            }
-      if(flag==false)pf("NO\n");
+            sum+=(i-1)*locked;
         }
+       locked++;
     }
+pf("%d\n",sum);
     return 0;
 }

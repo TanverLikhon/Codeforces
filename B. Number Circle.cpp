@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :http://codeforces.com/contest/1189/problem/B
+Verdict     :AC
+Time         :62 ms	400 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -50,31 +50,33 @@ using namespace std;
 
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
 
+
 int main()
 {
-    char str[100050];
-    scanf("%s",str);
-    int s=strlen(str);
-    int arr[s+2];
-    arr[0]=0;
-    int  ck=0;
-    for(int i=1; i<s; i++)
+    int n;
+    sf(n);
+    int arr[n];
+    for(int i=0; i<n; i++)
     {
-        if(str[i]==str[i-1])
-            arr[i]=arr[i-1]+1;
-        else
-            arr[i]=arr[i-1];
+        sf(arr[i]);
+    }
+    sort(arr,arr+n);
+    if(arr[n-1]>=arr[n-2]+arr[n-3])
+    {
+     pf("NO\n");return 0;
+    }
+    else
+    {
+    pf("YES\n");
+     pf("%d %d %d",arr[n-3],arr[n-1],arr[n-2]);
+   for(int i=n-4;i>=0;i--)
+   pf(" %d",arr[i]);nl;
+
     }
 
 
-    int m;
-    sf(m);
-    while(m--)
-    {
-        int x,y;
-        sff(x,y);
-
-        cout<<arr[y]-arr[x]<<endl;
-    }
     return 0;
 }
+/*
+Ref:http://codeforces.com/blog/entry/68079
+*/

@@ -1,7 +1,7 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
+Problem  :http://codeforces.com/contest/337/problem/A
+Verdict     :Accepted	30 ms	0 KB
 Time         :
 Memory  :
 */
@@ -52,29 +52,25 @@ using namespace std;
 
 int main()
 {
-    char str[100050];
-    scanf("%s",str);
-    int s=strlen(str);
-    int arr[s+2];
-    arr[0]=0;
-    int  ck=0;
-    for(int i=1; i<s; i++)
-    {
-        if(str[i]==str[i-1])
-            arr[i]=arr[i-1]+1;
-        else
-            arr[i]=arr[i-1];
-    }
-
-
-    int m;
-    sf(m);
+    int n,m;
+    sff(n,m);
+    vi vec;
+    int xx=m;
     while(m--)
     {
-        int x,y;
-        sff(x,y);
-
-        cout<<arr[y]-arr[x]<<endl;
+        int x;
+        sf(x);
+        vec.pb(x);
     }
+    sort(vec.begin(),vec.end());
+//    vec1.pb(vec[1]-vec[0]);
+    int mx=INT_MAX;
+    for(int i=0; i<xx; i++)
+    {
+        if(i+n-1>=xx)break;
+        mx=min(mx,vec[i+n-1]-vec[i]);
+    }
+
+    pf("%d\n",mx);
     return 0;
 }

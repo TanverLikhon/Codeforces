@@ -1,7 +1,7 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
+Problem  :http://codeforces.com/problemset/problem/519/B
+Verdict     :Accepted	109 ms	1200 KB
 Time         :
 Memory  :
 */
@@ -52,29 +52,60 @@ using namespace std;
 
 int main()
 {
-    char str[100050];
-    scanf("%s",str);
-    int s=strlen(str);
-    int arr[s+2];
-    arr[0]=0;
-    int  ck=0;
-    for(int i=1; i<s; i++)
+    int n;
+    sf(n);
+    int arr1[n],arr2[n-1],arr3[n-2];
+    for(int i=0; i<n; i++)
     {
-        if(str[i]==str[i-1])
-            arr[i]=arr[i-1]+1;
-        else
-            arr[i]=arr[i-1];
+        sf(arr1[i]);
     }
 
-
-    int m;
-    sf(m);
-    while(m--)
+    for(int i=0; i<n-1; i++)
     {
-        int x,y;
-        sff(x,y);
-
-        cout<<arr[y]-arr[x]<<endl;
+        sf(arr2[i]);
     }
+
+    for(int i=0; i<n-2; i++)
+    {
+        sf(arr3[i]);
+    }
+    int f=-1,t=-1;
+    sort(arr1,arr1+n);
+    sort(arr2,arr2+n-1);
+    sort(arr3,arr3+n-2);
+    for(int i=0; i<n; i++)
+    {
+        if(i<n-1)
+        {
+           if(arr1[i]!=arr2[i]&&f==-1)
+                f=arr1[i];
+
+            if(i<n-2)
+            {
+                if(arr2[i]!=arr3[i]&&t==-1)
+                    t=arr2[i];
+            }
+            else if(t==-1)
+                t=arr2[i];
+
+        }
+        else if(f==-1)
+            f=arr1[i];
+
+        /* if(i<n-1)
+         {
+             if(i<n-2)
+             {
+                 if(arr2[i]!=arr3[i]&&t=-1)
+                     t=arr1[i];
+             }
+             else if(t==-1)
+                 t=arr2[i];
+
+         }*/
+        if(t>=0&&f>=0)
+            break;
+    }
+    pf("%d\n%d\n",f,t);
     return 0;
 }
