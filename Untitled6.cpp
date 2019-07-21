@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
 Problem  :
-Verdict     :AC
-Time         :78 ms	400 KB
+Verdict     :
+Time         :
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -36,6 +36,7 @@ using namespace std;
 #define en        pf("Entered\n")
 #define en1      pf("Entered 2\n")
 #define gcd(a,b) __gcd(a,b)
+#define PI            2*acos(0)
 
 // priority_queue<int, vector<int>, greater<int> > Q;//for smaller values
 
@@ -52,26 +53,28 @@ using namespace std;
 
 int main()
 {
-int n;
-sf(n);
+int n;vi mm;
+sf(n);ll sum=0,sum1=0;
 int arr[n];
 sf(arr[0]);
+sum+=arr[0]; mm.pb(1);
 for(int i=1;i<n;i++)
 {
     sf(arr[i]);
-    arr[i]+=arr[i-1];
+    if(2*arr[i]<=arr[0])
+    {
+        sum+=arr[i];
+        mm.pb(i+1);
+    }
+    else sum1+=arr[i];
 }
-int q;
-sf(q);
-while(q--)
+if(sum>((sum+sum1)/2))
 {
-    int x,y;
-    sff(x,y);
-    if(x>1)
-    pf("%d\n",(arr[y-1]-arr[x-2])/10);
-    else
-         pf("%d\n",(arr[y-1])/10);
+    pf("%d\n",sz(mm));
+    for(int i=0;i<sz(mm);i++)
+        pf("%d ",mm[i]);
 }
+else pf("0\n");
 
 
 return 0;

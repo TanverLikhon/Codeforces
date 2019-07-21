@@ -49,57 +49,93 @@ using namespace std;
 //int dy[]={2,-2,1,-1,2,-2,1,-1};/*knight move*/
 
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
-ll lcs(string a)
+int lcs( string X, string Y, int m, int n )
 {
-    string b="wow";
-    int m = sz(a);
-    int n = sz(b);
-    ll res[m + 1][n + 1] = { { 0 } };
-    for (int i = 0; i <= n; i++)
-        res[0][i] = 0;
-
-    for (int i = 0; i <= m; i++)
-        res[i][0] = 1;
-
-    for (int i = 1; i <= m; i++)
+    int L[m+1][n+1];
+    int i, j;
+    for (i=0; i<=m; i++)
     {
-        for (int j = 1; j <= n; j++)
+        for (j=0; j<=n; j++)
         {
-            if (a[i - 1] == b[j - 1])
-                res[i][j] = res[i - 1][j - 1] +res[i - 1][j];
+            if (i == 0 || j == 0)
+                L[i][j] = 0;
+
+            else if (X[i-1] == Y[j-1])
+                L[i][j] = L[i-1][j-1] + 1;
+
             else
-                res[i][j] = res[i - 1][j];
+                L[i][j] = max(L[i-1][j], L[i][j-1]);
         }
     }
-    return res[m][n];
+
+    return L[m][n];
 }
-
-
+mp<char,int >str13;
+mp<char,int >str2;
 int main()
 {
-    string str;
-    cin>>str;
-    string str1="";
-    int vc=0;
-    for(int i=0; str[i]!='\0'; i++)
+    int t;
+    sf(t);
+    for(int k=0; k<t; k++)
     {
-        if(str[i]=='v')
-            vc++;
-         if(str[i]=='o'||i==(sz(str)-1))
+
+        string s,t,p;
+        cin>>s>>t>>p;
+        if(s==t)
         {
-           // cout<<"i  "<<i<<"   ";
-          //  cout<<sz(str)-1<<endl;
-            if(vc>1)
-            {
-                for(int k=1; k<vc; k++)
-                    str1+="w";
-            }
-            vc=0;
-            str1+="o";
+            pf("YES\n");
+            continue;
         }
+        int szs=sz(s),szt=sz(t),szp=sz(p);
+        bool res=true;
+        if(szs>szt)
+        {
+            res=false;
+            pf("NO\n");
+            continue;
+        }
+        int rr=lcs(s,t,szs,szt);
+        if(rr!=szs)
+        {
+            res=false;
+            pf("NO\n");
+            continue;
+        }
+        if(res)
+        {
+                        for(int i=0;i<szt;i++)
+                str2[t[i]]++;
+
+             for(int i=0;i<szs;i++)
+                str13[s[i]]++;
+
+                 for(int i=0;i<szp;i++)
+                str13[p[i]]++;
+
+                mp<char,int>::iterator it=str2.begin();
+                while(it!=str2.end())
+                {
+                    char ch=it->ff;
+                    int xx= it->ss;
+                    if(str13[ch]<xx)
+                    {
+                        res=false;
+                      ///  pf("NO\n");
+                        break;
+                    }
+
+                    it++;
+                }
+        }
+
+        if(res)
+            pf("YES\n");
+        else
+            pf("NO\n");
+        str13.clear();
+        str2.clear();
     }
-    //cout<<str1<<endl;
-pf("%lld\n",lcs(str1));
+
     return 0;
 }
 /*

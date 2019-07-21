@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :
-Verdict     :
-Time         :
+Problem  :https://codeforces.com/contest/1178/problem/B
+Verdict     :AC
+Time         :187 ms	27100 KB
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -49,33 +49,60 @@ using namespace std;
 //int dy[]={2,-2,1,-1,2,-2,1,-1};/*knight move*/
 
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
-mp<int, bool>cc;
-ull arr[MAX];
-int main()
+ull lcs(string a)
 {
-int a,b;
-sff(a,b);
-for(int i=1;i<=1000;i++){
-     arr[i]=(i*(i+1))/2;
-    cc[arr[i]]=true;
-}
-for(int i=1;i<1000;i++)
-{
-    if(arr[i]>=a)
+    string b="wow";
+    int m = sz(a);
+    int n = sz(b);
+    ull res[m + 1][n + 1] = { { 0 } };
+    for (int i = 0; i <= n; i++)
+        res[0][i] = 0;
+
+    for (int i = 0; i <= m; i++)
+        res[i][0] = 1;
+
+    for (int i = 1; i <= m; i++)
     {
-        int xx=arr[i]-a;
-        if(cc[xx+b]&&arr[i+1]==xx+b)
+        for (int j = 1; j <= n; j++)
         {
-            cout<<xx<<endl;
-            return 0;
+            if (a[i - 1] == b[j - 1])
+                res[i][j] = res[i - 1][j - 1] +res[i - 1][j];
+            else
+                res[i][j] = res[i - 1][j];
         }
     }
+    return res[m][n];
 }
 
 
-return 0;
+int main()
+{
+    string str;
+    cin>>str;
+    string str1="";
+    int vc=0;
+    for(int i=0; str[i]!='\0'; i++)
+    {
+        if(str[i]=='v')
+            vc++;
+         if(str[i]=='o'||i==(sz(str)-1))
+        {
+           // cout<<"i  "<<i<<"   ";
+          //  cout<<sz(str)-1<<endl;
+            if(vc>1)
+            {
+                for(int k=1; k<vc; k++)
+                    str1+="w";
+            }
+            vc=0;
+            str1+="o";
+        }
+    }
+    //cout<<str1<<endl;
+//pf("%lld\n",lcs(str1));
+cout<<lcs(str1)<<endl;
+    return 0;
 }
 /*
 Ref:
 */
-
