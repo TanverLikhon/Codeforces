@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :https://codeforces.com/contest/1283/problem/C
-Verdict     :AC
-Time         :93 ms	3300 KB
+Problem  :
+Verdict     :
+Time         :
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -52,61 +52,51 @@ using namespace std;
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
 
 
-bool track[200005];
+
 int main()
 {
     faster
-    int n;
-    cin>>n;
-    int arr[n+1],arr1[n+1];
-    vi zero;
-    int ck=0;
-    for(int i=1; i<=n; i++)
+    int t;
+    cin>>t;
+    while(t--){
+
+    int a,b,c,n;
+    int arr[3];
+    int mx=-1;
+    ll rem=0;
+    for(int i=0;i<3;i++)
     {
-        cin>>arr[i];
-        track[arr[i]]=true;
+
+    cin>>arr[i];
+    mx=max(mx,arr[i]);
+    }cin>>n;
+    for(int i=0;i<3;i++)rem+=(mx-arr[i]);
+
+    if(rem>n){
+    cout<<"NO"<<endl;
+    continue;
     }
-    for(int i=1; i<=n; i++)
-        if(!track[i])
-            zero.pb(i),ck++;
 
-    int s=0;
+    if(rem==n)cout<<"YES"<<endl;
+    else if(rem<n)
+    {
+    rem=n-rem;
+    if(rem%3==0)cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
 
-        for(int i=1; i<=n; i++)
-        {
-        int tmp;
 
-            if(arr[i]==0)
-            {
-                if(i!=zero[s])
-                {
-                    //  cout<<zero[s++]<<" ";
-                    arr1[i]=zero[s++];
-                    tmp=i;
-                }
-                else
-                {
-                    if(i==zero[s]&&s+1==sz(zero))
-                    {
-                      //  en;
-                        swap(zero[s],arr1[tmp]);
-                        arr1[i]=zero[s++];
-                        continue;
-                    }
-                    zero.pb(zero[s++]);
-                    arr1[i]=zero[s++];
-                    tmp=i;
-                    //  cout<<zero[s++]<<" ";
-                }
 
-            }
-            else
-                arr1[i]=arr[i];
-            //cout<<arr[i]<<" ";
-        }
+    }
 
-    for(int i=1; i<=n; i++)
-        cout<<arr1[i]<<" ";
+
+
+
+
+
+
+
+
+    }
 
     return 0;
 }

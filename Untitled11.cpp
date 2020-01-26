@@ -1,8 +1,8 @@
 /*Never Give up*/
 /*
-Problem  :https://codeforces.com/contest/1283/problem/C
-Verdict     :AC
-Time         :93 ms	3300 KB
+Problem  :
+Verdict     :
+Time         :
 Memory  :
 */
 #include<bits/stdc++.h>
@@ -40,7 +40,7 @@ using namespace std;
 #define sp  ' '
 // priority_queue<int, vector<int>, greater<int> > Q;//for smaller values
 
-#define MAX    100000
+#define MAX     1000000000
 
 //int dx[] = {-1, 0, 1, 0};
 //int dy[] = {0, 1, 0, -1};
@@ -50,63 +50,75 @@ using namespace std;
 //int dy[]={2,-2,1,-1,2,-2,1,-1};/*knight move*/
 
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
-
-
-bool track[200005];
+//bool cc[MAX];
+mp<int,bool>cc;
 int main()
 {
-    faster
+  faster
     int n;
     cin>>n;
-    int arr[n+1],arr1[n+1];
-    vi zero;
-    int ck=0;
-    for(int i=1; i<=n; i++)
+    ll price[n];
+    set <ll>pp[4];
+    for(int i=0; i<n; i++)
+        cin>>price[i];
+    for(int i=0; i<n; i++)
     {
-        cin>>arr[i];
-        track[arr[i]]=true;
+        ll x;
+        cin>>x;
+        pp[x].insert(price[i]);
     }
-    for(int i=1; i<=n; i++)
-        if(!track[i])
-            zero.pb(i),ck++;
+    for(int i=0; i<n; i++)
+    {
+        ll x;
+        cin>>x;
+        pp[x].insert(price[i]);
+        //   cout<<"x= "<<x<<"  ";
+    }
 
-    int s=0;
-
-        for(int i=1; i<=n; i++)
+    /*   for(int i=1;i<=3;i++)
         {
-        int tmp;
-
-            if(arr[i]==0)
-            {
-                if(i!=zero[s])
-                {
-                    //  cout<<zero[s++]<<" ";
-                    arr1[i]=zero[s++];
-                    tmp=i;
-                }
-                else
-                {
-                    if(i==zero[s]&&s+1==sz(zero))
-                    {
-                      //  en;
-                        swap(zero[s],arr1[tmp]);
-                        arr1[i]=zero[s++];
-                        continue;
-                    }
-                    zero.pb(zero[s++]);
-                    arr1[i]=zero[s++];
-                    tmp=i;
-                    //  cout<<zero[s++]<<" ";
-                }
-
-            }
-            else
-                arr1[i]=arr[i];
-            //cout<<arr[i]<<" ";
+          set<ll>::iterator it;
+          it=pp[i].begin();
+          while(it!=pp[i].end())
+          {
+              cout<<*it<<" ";it++;
+          }
         }
 
-    for(int i=1; i<=n; i++)
-        cout<<arr1[i]<<" ";
+    */
+
+    int t;
+    cin>>t;
+    set<ll>::iterator it;
+    while(t--)
+    {
+        int x;
+        cin>>x;
+        if(pp[x].empty())
+            cout<<-1<<" ";
+        else
+        {
+            it=pp[x].begin();
+            bool flag=false;
+            while(it!=pp[x].end())
+            {
+                //  en;
+                int tmp=*it;
+                if(cc[tmp]==false)
+                {
+                    cc[tmp]=true;
+                    cout<<tmp<<" ";
+                    flag=true;
+                    break;
+                }
+             pp[x].erase(it,it);
+                it++;
+            }
+            if(!flag)
+                cout<<-1<<" ";
+        }
+    }
+
 
     return 0;
 }

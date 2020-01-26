@@ -22,7 +22,8 @@ using namespace std;
 #define all(a)          a.begin(), a.end()
 #define faster  ios :: sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define pf         printf
-#define pf1        pf("%d\n");
+#define pf1(a)        pf("%d\n",a);
+#define PI  acos(-1)
 #define ll           long long
 #define ull        unsigned long long
 #define pb        push_back
@@ -36,11 +37,10 @@ using namespace std;
 #define en        pf("Entered\n")
 #define en1      pf("Entered 2\n")
 #define gcd(a,b) __gcd(a,b)
-#define PI            2*acos(0)
 
 // priority_queue<int, vector<int>, greater<int> > Q;//for smaller values
 
-#define MAX    100000
+#define MAX    100005
 
 //int dx[] = {-1, 0, 1, 0};
 //int dy[] = {0, 1, 0, -1};
@@ -50,36 +50,79 @@ using namespace std;
 //int dy[]={2,-2,1,-1,2,-2,1,-1};/*knight move*/
 
 //'A'=65,'Z'=90 'a'=97 'z'=122 '0'=48
+int src,dest,v;
 
 int main()
 {
-int n;vi mm;
-sf(n);ll sum=0,sum1=0;
-int arr[n];
-sf(arr[0]);
-sum+=arr[0]; mm.pb(1);
-for(int i=1;i<n;i++)
-{
-    sf(arr[i]);
-    if(2*arr[i]<=arr[0])
+
+    int n1,n2;
+    sff(n1,n2);
+    int str1[n1][26];
+    int str2[n2][26];
+cin.ignore();
+    for(int i=0; i<n1; i++)
     {
-        sum+=arr[i];
-        mm.pb(i+1);
+        for(int j=0; j<26; j++)str1[i][j]=0;
+        char ch;
+
+        while(sc(ch)&&ch>='A'&&ch<='Z')
+        {
+            int tmp=int(ch-'A');
+         //   cout<<tmp<<endl;
+         cout<<"Ch "<<ch<<endl;
+            str1[i][tmp]++;//en;
+           // sc(ch);
+        }
+
+
     }
-    else sum1+=arr[i];
-}
-if(sum>((sum+sum1)/2))
-{
-    pf("%d\n",sz(mm));
-    for(int i=0;i<sz(mm);i++)
-        pf("%d ",mm[i]);
-}
-else pf("0\n");
 
 
-return 0;
+    cin.ignore();
+    for(int i=0; i<n2; i++)
+    {
+        for(int j=0; j<26; j++)str2[i][j]=0;
+        char ch;
+
+        while(sc(ch)&&ch>='A'&&ch<='Z')
+        {
+            int tmp=int(ch-'A');
+         //   cout<<tmp<<endl;
+         cout<<"Ch "<<ch<<endl;
+            str2[i][tmp]++;//en;
+           // sc(ch);
+        }
+
+
+    }
+
+
+
+
+    for(int i=0; i<n1; i++)
+    {
+    cout<<"line "<<i+1<<endl;
+        for(int j=0; j<26; j++)
+            cout<<str1[i][j]<<" ";
+        nl;
+
+    }
+
+
+    for(int i=0; i<n2; i++)
+    {
+    cout<<"line "<<i+1<<endl;
+        for(int j=0; j<26; j++)
+            cout<<str2[i][j]<<" ";
+        nl;
+
+    }
+
+
+
+
+    return 0;
 }
 /*
 Ref:
 */
-
